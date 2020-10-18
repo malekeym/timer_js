@@ -14,14 +14,16 @@ startCounter.addEventListener('click' , function(e) {
         errorElement.classList.add('active')
         return;
     }
-
     errorElement.classList.remove('active');
     startBox.classList.remove('active')
     timerCircle.style.display = 'block'
     timerNum.textContent= seconds;
     loadingMessage.style.display ='block';
     successMessage.style.display ='none';
-let timeId=setInterval(() => {
+    let orginalSeconds=seconds;
+    let lastPercent="";
+    let timeId=setInterval(() => {
+        if(lastPercent)timerCircle.classList.remove(lastPercent);
         if(seconds<=1){
             clearInterval(timeId);
             startBox.classList.add("active");
@@ -29,8 +31,14 @@ let timeId=setInterval(() => {
             loadingMessage.style.display ='none';
             successMessage.style.display ='block';
             inputCounter.value=null;
+            timerCircle.classList.remove(lastPercent);
+            return ;
         }
         seconds-=1;
+        let percent = Math.floor(((orginalSeconds-seconds)/orginalSeconds)*100);
+        let clis='p'+percent;
+        lastPercent=clis;
+        timerCircle.classList.add(clis)
         timerNum.textContent= seconds;
     }, 1000);
 })
