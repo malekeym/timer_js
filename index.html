@@ -22,6 +22,11 @@
         }
         .start-box {
             margin: 20px 0;
+            display: none;
+        }
+
+        .start-box.active {
+            display: block;
         }
 
         .start-box #input-counter {
@@ -48,20 +53,38 @@
 
         .message .loading {
             color: #e74c3c;
+            display: none;
         }
 
         .message .success {
-            color: #27ae60
+            color: #27ae60;
+            display: none;
+        }
+
+
+        #error-message {
+            color: #e74c3c;
+            font-size: .9em;
+            display: none;
+        }
+
+        #error-message.active {
+            display: block;
+        }
+
+        .c100 {
+            display: none;
         }
 
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="start-box">
+        <div class="start-box active">
             <input type="text" id="input-counter" placeholder="زمان مورد نظر خود را به ثانیه وارد کنید">
             <button id="start-counter">شروع</button>
         </div>
+        <div id="error-message"></div>
         <div class="c100 p50">
             <span>250</span>
             <div class="slice">
@@ -74,5 +97,6 @@
             <span class="success">شمارنده با موفقیت به پایان رسید</span>
         </div>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>
